@@ -8,9 +8,18 @@ using System.Threading.Tasks;
 
 namespace BankAccount.Tests
 {
+    
     [TestClass()]
     public class AccountTests
     {
+        [TestInitialize]
+        public void TestInitializer()
+        {
+            Account acc = new Account();
+            acc.AccountNumber = null;
+            acc.Owner = "John Doe";
+        }
+
         [TestMethod]
         [DataRow(99)]
         [DataRow(99.99)]
@@ -77,9 +86,11 @@ namespace BankAccount.Tests
         [TestInitialize] // Run this method before EVERY unit test
         public void InitTest()
         {
-            acc = new Account();
-            acc.Owner = "Some Person";
-            acc.AccountNumber = "ABC123";
+            acc = new Account
+            {
+                Owner = "Some Person",
+                AccountNumber = "ABC123"
+            };
 
         }
 
@@ -113,15 +124,20 @@ namespace BankAccount.Tests
         [TestMethod]
         [DataRow("ABC#")]
         [DataRow("#ABC")]
-        [DataRow(null)]
         [DataRow("")]
         [DataRow("        ")]
-        public void AccountNum_SetInvalidAcc_ThrowsException(string invalidAcc)
+        public void AccountNum_SetInvalidAcc_ThrowsArgumentException(string invalidAcc)
         {
             // TODO: Split this into multiple tests with specific
             // exceptions
-            Assert.ThrowsException<Exception>
-                (() => acc.AccountNumber = invalidAcc);
+            Assert.ThrowsException<Exception>(() => acc.AccountNumber = invalidAcc);
+        }
+
+        public void AccountNum_SetInvalidAcc_ThrowsNullException()
+        {
+            // TODO: Split this into multiple tests with specific
+            // exceptions
+            Assert.ThrowsException<Exception>(() => acc.AccountNumber = null);
         }
     }
 }
