@@ -11,6 +11,8 @@ namespace BankAccount.Tests
     [TestClass()]
     public class AccountTests
     {
+        Account acc;
+
         [TestMethod]
         [DataRow(99)]
         [DataRow(99.99)]
@@ -83,8 +85,6 @@ namespace BankAccount.Tests
 
         }
 
-        Account acc;
-
         [TestMethod]
         public void Withdraw_PositiveAmount_ReducesBalance()
         {
@@ -123,5 +123,7 @@ namespace BankAccount.Tests
             Assert.ThrowsException<Exception>
                 (() => acc.AccountNumber = invalidAcc);
         }
+
+
     }
 }
