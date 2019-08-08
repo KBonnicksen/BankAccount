@@ -12,13 +12,6 @@ namespace BankAccount.Tests
     [TestClass()]
     public class AccountTests
     {
-        [TestInitialize]
-        public void TestInitializer()
-        {
-            Account acc = new Account();
-            acc.AccountNumber = null;
-            acc.Owner = "John Doe";
-        }
 
         [TestMethod]
         [DataRow(99)]
@@ -130,14 +123,14 @@ namespace BankAccount.Tests
         {
             // TODO: Split this into multiple tests with specific
             // exceptions
-            Assert.ThrowsException<Exception>(() => acc.AccountNumber = invalidAcc);
+            Assert.ThrowsException<ArgumentException>(() => acc.AccountNumber = invalidAcc);
         }
 
         public void AccountNum_SetInvalidAcc_ThrowsNullException()
         {
             // TODO: Split this into multiple tests with specific
             // exceptions
-            Assert.ThrowsException<Exception>(() => acc.AccountNumber = null);
+            Assert.ThrowsException<ArgumentNullException>(() => acc.AccountNumber = null);
         }
     }
 }
