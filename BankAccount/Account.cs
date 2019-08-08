@@ -26,6 +26,10 @@ namespace BankAccount
                     throw new ArgumentNullException
                         ($"{nameof(AccountNumber)} cannot be null");
                 }
+                if( value.Trim() == string.Empty)
+                {
+                    throw new ArgumentNullException("Account number cannot be null");
+                }
                 if (value.Contains("#"))
                 {
                     throw new ArgumentException
